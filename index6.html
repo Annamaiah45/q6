@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Question.6</title>
+  </head>
+  <body>
+    <h3>Thank You</h3>
+    <script>
+      function postfixToPrefix(postfix) {
+        const stack = [];
+        const operators = "+-*/%^";
+
+        for (let i = 0; i < postfix.length; i++) {
+          const token = postfix.charAt(i);
+          if (operators.includes(token)) {
+            const operand2 = stack.pop();
+            const operand1 = stack.pop();
+            stack.push(token + operand1 + operand2);
+          } else {
+            stack.push(token);
+          }
+        }
+        return stack.pop();
+      }
+      const postfixExpr = prompt("Enter a postfix expression:");
+      const prefixExpr = postfixToPrefix(postfixExpr);
+      alert(`Prefix expression: ${prefixExpr}`);
+    </script>
+  </body>
+</html>
